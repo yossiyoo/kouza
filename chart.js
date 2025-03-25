@@ -1,12 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const generateUptrendData = (numPoints, startValue, endValue) => {
+    const generateUpwardTrendingData = (numPoints, startValue, endValue) => {
         let data = [];
         let step = (endValue - startValue) / (numPoints - 1);
-        
+        let value = startValue;
+
         for (let i = 0; i < numPoints; i++) {
-            data.push(startValue + step * i);
+            let randomChange = (Math.random() - 0.5) * 500; // -250から+250のランダムな変動
+            value += step + randomChange;
+            data.push(value);
         }
-        
+
+        // 最後の値を正確にendValueに設定
+        data[data.length - 1] = endValue;
         return data;
     };
 
@@ -14,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const stockChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: Array.from({length: 30}, (_, i) => `time ${i + 1}`), // 30日分のラベル
+            labels: Array.from({length: 30}, (_, i) => `Day ${i + 1}`), // 30日分のラベル
             datasets: [{
-                label: '右肩上がりの株価データ',
-                data: generateUptrendData(30, 100000, 135000), // 初期値100000、最終値135000
+                label: '右肩上がりのランダム株価データ',
+                data: generateUpwardTrendingData(30, 100000, 135000), // 初期値100000、最終値135000
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: false,
@@ -29,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 x: {
                     title: {
                         display: true,
-                        text: '時間'
+                        text: '日付'
                     }
                 },
                 y: {
