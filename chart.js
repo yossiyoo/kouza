@@ -1,16 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const depositForm = document.getElementById('deposit-form');
-    const depositSection = document.getElementById('deposit-section');
+    const nextButton = document.getElementById('next-button');
     const chartSection = document.getElementById('chart-section');
-    const amountInput = document.getElementById('amount');
+    const withdrawSection = document.getElementById('withdraw-section');
+    const withdrawForm = document.getElementById('withdraw-form');
 
-    depositForm.addEventListener('submit', (event) => {
+    nextButton.addEventListener('click', () => {
+        chartSection.style.display = 'none';
+        withdrawSection.style.display = 'block';
+    });
+
+    withdrawForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        const amount = amountInput.value;
-        alert(`¥${amount} が正常に入金されました。`);
-        depositSection.style.display = 'none';
-        chartSection.style.display = 'block';
-        displayChart();
+        const withdrawAmount = document.getElementById('withdraw-amount').value;
+        alert(`¥${withdrawAmount} が正常に出金されました。`);
+        // 出金完了後の処理をここに追加できます
     });
 
     const generateUpwardTrendingData = (numPoints, startValue, endValue) => {
@@ -19,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let value = startValue;
 
         for (let i = 0; i < numPoints; i++) {
-            let randomChange = (Math.random() - 0.5) * 5000; // -1500から+1500のランダムな変動
+            let randomChange = (Math.random() - 0.5) * 1000; // -500から+500のランダムな変動
             value += step + randomChange;
             data.push(value);
         }
@@ -63,4 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+
+    displayChart();
 });
