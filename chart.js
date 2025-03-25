@@ -1,19 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const nextButton = document.getElementById('next-button');
+    const depositForm = document.getElementById('deposit-form');
     const chartSection = document.getElementById('chart-section');
     const withdrawSection = document.getElementById('withdraw-section');
-    const withdrawForm = document.getElementById('withdraw-form');
+    const nextButton = document.getElementById('next-button');
+
+    depositForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const depositAmount = document.getElementById('deposit-amount').value;
+        alert(`¥${depositAmount} が正常に入金されました。`);
+        depositForm.style.display = 'none';
+        chartSection.style.display = 'block';
+        displayChart();
+    });
 
     nextButton.addEventListener('click', () => {
         chartSection.style.display = 'none';
         withdrawSection.style.display = 'block';
-    });
-
-    withdrawForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const withdrawAmount = document.getElementById('withdraw-amount').value;
-        alert(`¥${withdrawAmount} が正常に出金されました。`);
-        // 出金完了後の処理をここに追加できます
     });
 
     const generateUpwardTrendingData = (numPoints, startValue, endValue) => {
@@ -66,6 +68,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-
-    displayChart();
 });
