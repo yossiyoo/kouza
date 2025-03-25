@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const stockChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: Array.from({length: 30}, (_, i) => `Day ${i + 1}`), // 30日分のラベル
+            labels: Array.from({length: 30}, (_, i) => `time ${i + 1}`), // 30日分のラベル
             datasets: [{
                 label: 'ランダム株価データ',
                 data: generateRandomData(30),
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 x: {
                     title: {
                         display: true,
-                        text: '日付'
+                        text: '時間'
                     }
                 },
                 y: {
