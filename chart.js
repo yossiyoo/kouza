@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let value = startValue;
 
         for (let i = 0; i < numPoints; i++) {
-            let randomChange = (Math.random() - 0.5) * 1500; // -750から+750のランダムな変動
+            let randomChange = (Math.random() - 0.5) * 3000; // -1500から+1500のランダムな変動
             value += step + randomChange;
             data.push(value);
         }
