@@ -1,12 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const generateRandomData = (numPoints) => {
+        let data = [];
+        let value = 100; // 初期値
+        
+        for (let i = 0; i < numPoints; i++) {
+            const change = (Math.random() - 0.5) * 10; // -5から+5のランダムな変動
+            value += change;
+            data.push(value);
+        }
+        
+        return data;
+    };
+
     const ctx = document.getElementById('stockChart').getContext('2d');
     const stockChart = new Chart(ctx, {
-        type: 'line', // チャートの種類（ラインチャート）
+        type: 'line',
         data: {
-            labels: ['2025-01-01', '2025-01-02', '2025-01-03', '2025-01-04', '2025-01-05', '2025-01-06', '2025-01-07'],
+            labels: Array.from({length: 30}, (_, i) => `Day ${i + 1}`), // 30日分のラベル
             datasets: [{
-                label: 'サンプル株価データ',
-                data: [150, 152, 148, 145, 149, 153, 151],
+                label: 'ランダム株価データ',
+                data: generateRandomData(30),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: false,
@@ -16,14 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             scales: {
                 x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day',
-                        tooltipFormat: 'YYYY-MM-DD'
+                    title: {
+                        display: true,
+                        text: '日付'
                     }
                 },
                 y: {
-                    beginAtZero: false
+                    beginAtZero: false,
+                    title: {
+                        display: true,
+                        text: '株価'
+                    }
                 }
             }
         }
