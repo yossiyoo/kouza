@@ -1,21 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar', // チャートの種類（bar, line, pieなど）
+    const ctx = document.getElementById('stockChart').getContext('2d');
+    const stockChart = new Chart(ctx, {
+        type: 'line', // チャートの種類（ラインチャート）
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['2025-01-01', '2025-01-02', '2025-01-03', '2025-01-04', '2025-01-05', '2025-01-06', '2025-01-07'],
             datasets: [{
-                label: 'サンプルデータセット',
-                data: [12, 19, 3, 5, 2, 3, 7],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                label: 'サンプル株価データ',
+                data: [150, 152, 148, 145, 149, 153, 151],
                 borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: false,
+                tension: 0.1
             }]
         },
         options: {
             scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                        tooltipFormat: 'YYYY-MM-DD'
+                    }
+                },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: false
                 }
             }
         }
