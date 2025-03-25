@@ -2,10 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const depositForm = document.getElementById('deposit-form');
     const chartSection = document.getElementById('chart-section');
     const withdrawSection = document.getElementById('withdraw-section');
-    const reDepositSection = document.getElementById('re-deposit-section');
     const nextButton = document.getElementById('next-button');
-    const withdrawForm = document.getElementById('withdraw-form');
-    const reDepositForm = document.getElementById('re-deposit-form');
 
     depositForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -19,22 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     nextButton.addEventListener('click', () => {
         chartSection.style.display = 'none';
         withdrawSection.style.display = 'block';
-    });
-
-    withdrawForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const withdrawAmount = document.getElementById('withdraw-amount').value;
-        alert(`¥${withdrawAmount} が正常に出金されました。`);
-        withdrawSection.style.display = 'none';
-        reDepositSection.style.display = 'block';
-    });
-
-    reDepositForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const reDepositAmount = document.getElementById('re-deposit-amount').value;
-        alert(`¥${reDepositAmount} が正常に再入金されました。`);
-        reDepositSection.style.display = 'none';
-        chartSection.style.display = 'block';
     });
 
     const generateUpwardTrendingData = (numPoints, startValue, endValue) => {
